@@ -1,5 +1,4 @@
-document.ready(function () {
-//After The Page has  completely loaded
+$(document).ready(function (e) {
 
 
 
