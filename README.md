@@ -1,6 +1,8 @@
 The record management system is an application that is used by the procurement department within Egerton university for efficiency operation of the stock, the system enables the department to manage the stock in the store. therefore, there is no over purchasing of items when requested by respective departments in the university.
 It basically authenticates the stock manager to check if the item requested is in the store, in the required quantity thus the department gets the item. therefore, the university doesn’t undergo losses by purchasing the same item since there is clear record of the items in store and it ensures they are clearly updated 
 If the item requested by the department is not in the record, then the department is requested to wait for the procurement department to order for the item  
+
+
 NON FUNCTIONAL REQUIREMENTS
 
 a). SECURITY  
@@ -13,6 +15,7 @@ only the stock manager should be able to approve a request of an item by departm
 the system should allow users to authenticate in seconds 
 
 c)   OPERATIONAL 
+
 the system will run as an online platform (web based).it should also support multi user that is multiple user’s users from different departments requesting for items simultaneously without causing problem to the system. the system should be applicable to technology standard that is window based 
 
 d). AVAILABILITY 
