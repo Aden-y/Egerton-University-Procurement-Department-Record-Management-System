@@ -38,4 +38,7 @@ private $user_type; //Usertype admin, client or record manager
 
 	
 }
+
+//$user = new User('Joakim','Adeny','kimmiejoe92@gmail.com','mrkim','kimkim','ADMIN');
+//$user->add();
   ?>

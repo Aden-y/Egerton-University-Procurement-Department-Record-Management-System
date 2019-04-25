@@ -13,7 +13,7 @@ class Order
 	{
 		$this->item_name = $item_name;
 		$this->department_requesting = $department_requesting;
-		$this->quantity_ordering = $department_requesting;
+		$this->quantity_ordering = $quantity_ordering;
 		$this->date_to_deliver = $date_to_deliver;
 	}
 
@@ -21,6 +21,7 @@ class Order
 		Database::add('ORDERS',array($this->item_name,$this->department_requesting,$this->quantity_ordering,$this->date_to_deliver));
 	}
 }
-
+//$order = new Order('Petrol','Ingineering',20,date("Y/m/d"));
+//$order->add();
 
  ?>

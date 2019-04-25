@@ -1,6 +1,6 @@
 <?php 
 /**
- * This Class Will Help Connectiong To The MySql DataBase
+ * This Class Will HelpDatabase:: Connectiong To The MySql DataBase
  *All The methods and variables in this class are static
  */
 class Database
@@ -8,20 +8,21 @@ class Database
 	
 private static $username = 'root';//Username as in the MySql Database. Change appropriately
 private static $database_name = 'EUPDRMS'; //Egerton University Procurement Department Record Management system
-private static $connection = null;// Connection to the Database. Initially set to null
+private static $connection = null;//Database:: Connection to the Database. Initially set to null
 private static $password = ''; //Password to the database. Change the value as suits
-private static $host = 'localhost';//Connection therough the localhost
+private static $host = 'localhost';///Connection therough the localhost
 
 
-//This function creats a connection to the database and sets the connection.
-//It returns  the connection which can be used in other Classes
-//Initial connection before database is created
-public static function connectiInitial(){
+//This function creats aDatabase:: connection to the database and sets theDatabase:: connection.
+//It returns  theDatabase:: connection which can be used in other Classes
+//InitialDatabase:: connection before database is created
+private static function connectiInitial(){
   try {
-    $connection = new PDO("mysql:host=$host", $username, $password);
+  	$myhost = Database::$host;
+    Database::$connection = new PDO("mysql:host=$myhost", Database::$username, Database::$password);
     // set the PDO error mode to exception
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     return $connection; 
+    Database::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     return Database::$connection; 
     }
 catch(PDOException $e)
     {
@@ -32,10 +33,12 @@ catch(PDOException $e)
 }
 public static function connect(){
   try {
-    $connection =  new PDO("mysql:host=$host;dbname=$database_name", $username, $password);
+  	$myhost = Database::$host;
+  	$mydb = Database::$database_name;
+    Database::$connection =  new PDO("mysql:host=$myhost;dbname=$mydb", Database::$username, Database::$password);
     // set the PDO error mode to exception
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-     return $connection; 
+    Database::$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+     return Database::$connection; 
     }
 catch(PDOException $e)
     {
@@ -48,15 +51,15 @@ catch(PDOException $e)
 //This Method creates the Database. Of course if it does exist
 
 public static function create_db(){
-	connectiInitial();//Connect to the database
+	Database::connectiInitial();//Connect to the database
 	//If we were lucky to connect
-	if ($connection!=null) {
-		$MySql="CREATE DATABASE IF NOT EXISTS ".$database_name;//Create sql query
-		$connection->exec($sql);//Execute the query
-		$connection = null;//Destroy connection after use
+	if (Database::$connection!=null) {
+		$sql="CREATE DATABASE IF NOT EXISTS ".Database::$database_name;//Create sql query
+		Database::$connection->exec($sql);//Execute the query
+		Database::$connection = null;//DestroyDatabase:: connection after use
 		return true;
 	}
-	echo "Could not create connection"."<br>";
+	echo "Could not createDatabase:: connection"."<br>";
 	return false;
 //Cnd of create_db()
 }
@@ -66,30 +69,30 @@ public static function create_db(){
 //Creates all the tables that we will need to use USERS, RECORDS, ORDERS
 
 public  static function createTables(){
-	connect();
-	if($connection != null){
+	Database::connect();
+	if(Database::$connection != null){
 
 		//CREATE USERS TABLE
 		$sql = "CREATE TABLE IF NOT EXISTS USERS(
 		ID INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
 		FIRST_NAME VARCHAR(50) NOT NULL,
 		LAST_NAME VARCHAR (50) NOT NULL,
-		EMAIL VARCHAR (100) NOT NULL,
-		USERNAME VARCHAR (50) NOT NULL,
+		EMAIL VARCHAR (100) UNIQUE KEY NOT NULL,
+		USERNAME VARCHAR (50) UNIQUE KEY NOT NULL,
 		PASSWORD VARCHAR (250) NOT NULL,
 		USER_TYPE ENUM('ADMIN','MANAGER','CLIENT'),
 		REGISTER_DATE DATE NOT NULL
 	)";
-	$connection->exec($sql);//Execute the query
+	Database::$connection->exec($sql);//Execute the query
 		//CREATE RECORDS TABLE
 		$sql = " CREATE TABLE IF NOT EXISTS RECORDS(
 			ID INT (11) PRIMARY KEY  NOT NULL AUTO_INCREMENT,
-			RECORD_NAME  VARCHAR (100) NOT NULL,
+			RECORD_NAME  VARCHAR (100) UNIQUE KEY NOT NULL,
 			RECORD_QUANTITY INT(11) NOT NULL,
 			PRICE_FOR_EACH FLOAT NOT NULL,
 			DATE_ADDED DATE NOT NULL
 		)";
-		$connection->exec($sql);//Execute the query
+		Database::$connection->exec($sql);//Execute the query
 
 	//CREATE ORDERS TABLE
 
@@ -102,8 +105,8 @@ public  static function createTables(){
 			DATE_TO_DELIVER DATE NOT NULL
 
 		)";
-		$connection->exec($sql);//Execute the query
-		$connection = null; //Destroy connection
+		Database::$connection->exec($sql);//Execute the query
+		Database::$connection = null; //DestroyDatabase:: connection
 		$sql=null;
 	}
 //End Create tables
@@ -111,12 +114,12 @@ public  static function createTables(){
 
 //This method adds to the table specified in the argument data array specified in the argument
 public static function add($table, $data_array){
-	connect();
-	if ($connection != null) {
+	Database::connect();
+	if (Database::$connection != null) {
 		$today = date("Y/m/d");
 		if ($table == 'USERS') {
 			$sql="INSERT INTO USERS(FIRST_NAME,LAST_NAME,EMAIL,USERNAME,PASSWORD,USER_TYPE,REGISTER_DATE) VALUES (
-			'$data_array[0]','$data_array[1]','$data_array[2]','$data_array[3]','$data_array[4]','$data_array[5],'$today'
+			'$data_array[0]','$data_array[1]','$data_array[2]','$data_array[3]','$data_array[4]','$data_array[5]','$today'
 			)";
 		}else if($table == 'ORDERS'){
 			$sql="INSERT INTO ORDERS(ITEM_NAME,DEPARTMENT_REQUESTING,QUANTITY_ORDERING,ORDER_DATE,DATE_TO_DELIVER) VALUES (
@@ -128,8 +131,8 @@ public static function add($table, $data_array){
 			)";
 		}
 
-		$connection->exec($sql);//Execute the query
-		$connection = null; //Destroy connection
+		Database::$connection->exec($sql);//Execute the query
+		Database::$connection = null; //DestroyDatabase:: connection
 		$sql=null;
 	}
 
@@ -139,9 +142,9 @@ public static function add($table, $data_array){
 
 //RETURNS ALL DATA FROM A TABLE
 public static function getAll($table){
-	connect();
-	if ($connection != null) {	
-    $stmt = $connection->prepare("SELECT * FROM '$table'"); 
+	Database::connect();
+	if (Database::$connection != null) {	
+    $stmt = Database::$connection->prepare("SELECT * FROM $table"); 
     $stmt->execute();
 
 
@@ -150,6 +153,10 @@ public static function getAll($table){
 }
 //End of Class
 }
-
+ //Database::create_db();
+//Database::createTables();
+//print_r(Database::getAll('USERS'));echo "<br>";
+//print_r(Database::getAll('RECORDS'));echo "<br>";
+//print_r(Database::getAll('ORDERS'));echo "<br>";
 
  ?>

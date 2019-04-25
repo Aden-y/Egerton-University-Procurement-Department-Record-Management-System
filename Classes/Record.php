@@ -26,5 +26,6 @@ class Record
 	}
 }
 
-
+//$rec = new Record("Book", 25, 256.12);
+//$rec->add();
   ?>
