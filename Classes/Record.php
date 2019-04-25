@@ -24,8 +24,20 @@ class Record
 	public function add(){
 		Database::add('RECORDS',array($this->record_name,$this->record_quantity,$this->price_for_each));
 	}
+
+
+	///Updating the  record
+	public static function update($attr,$new,$pk){
+		Database::update('RECORDS',$attr,$new,$pk);
+	}
+
+	//Delete record
+	public static function delete($pk){
+		Database::delete('RECORDS',$pk);
+	}
 }
 
 //$rec = new Record("Book", 25, 256.12);
 //$rec->add();
+//	Record::update('RECORD_QUANTITY',120,1);
   ?>

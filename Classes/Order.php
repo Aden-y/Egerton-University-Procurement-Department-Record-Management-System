@@ -20,6 +20,13 @@ class Order
 	public function add(){
 		Database::add('ORDERS',array($this->item_name,$this->department_requesting,$this->quantity_ordering,$this->date_to_deliver));
 	}
+		public static function update($attr,$new,$pk){
+		Database::update('ORDERS',$attr,$new,$pk);
+	}
+	//Delete record
+	public static function delete($pk){
+		Database::delete('ORDERS',$pk);
+	}
 }
 //$order = new Order('Petrol','Ingineering',20,date("Y/m/d"));
 //$order->add();

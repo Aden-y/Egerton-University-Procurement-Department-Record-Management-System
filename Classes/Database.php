@@ -151,6 +151,37 @@ public static function getAll($table){
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 	}
 }
+
+
+/*
+*This function is used to update the table given in the argument.
+*@param table  is the table to update
+*@param attr is the attribute we want to update
+*@param  new is the new value we want for the attribute
+*@param pk The value in the primary key
+*/
+public static  function update($table, $attr, $new, $pk){
+		Database::connect();
+	if (Database::$connection != null) {	
+		$sql= "UPDATE $table SET $attr = '$new' WHERE ID = '$pk'";
+		Database::$connection->exec($sql);//Execute the query
+		Database::$connection = null; //DestroyDatabase:: connection
+		$sql=null;
+	}
+}
+
+//Deleting record from the Database
+
+public static function delete($table, $pk){
+	Database::connect();
+	if (Database::$connection != null) {	
+		$sql= "DELETE FROM $table  WHERE ID = '$pk'";
+		Database::$connection->exec($sql);//Execute the query
+		Database::$connection = null; //DestroyDatabase:: connection
+		$sql=null;
+	}
+}
+
 //End of Class
 }
  //Database::create_db();
