@@ -3,3 +3,47 @@
 	font-size: 20px;
 	font-family:"Times New Roman", Georgia, Serif;
 }
+.topNav{
+	background: #1d1b59;
+	color: #f0f0f7;
+}
+.nav-link{
+	color:  #f0f0f7;
+	text-decoration: none;
+}
+.login-form-holder{
+	max-width: 60%;
+	margin-top:  20px;
+}
+.red{
+	color: red;
+}
+.hideme{
+	display: none;
+}
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 360px) {
+
+.topNav h1{
+	background: #1d1b59;
+	color: #f0f0f7;
+	font-size: 20px;
+}
+
+.topNav{
+	padding: 20px;
+}
+.login-form-holder{
+	max-width: 100%;
+	margin-top:  5px;
+}
+
+}

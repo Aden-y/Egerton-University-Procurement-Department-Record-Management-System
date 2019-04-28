@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
- <meta charset="utf-8">
+ 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Egerton University Procurement Department Record  Management System</title>
 	<script type="text/javascript" src="./Assets/javascripts/jquery.min.js"></script>
@@ -15,6 +15,65 @@
 
 </head>
 <body>
+	<!--Top nav-->
+	<ul class="nav justify-content-center topNav">
+<h1>Egerton University Procurement Department</h1>
+</ul>
 
+
+<ul class="nav justify-content-center topNav">
+  <li class="nav-item">
+    <a class="nav-link" href="#">Login</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">About</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="#">Contacts</a>
+  </li>
+</ul>
+	<!--Top Nav ending here-->
+
+
+
+<div class="container">
+	
+
+	<center>
+		<div class="jumbotron login-form-holder">
+			<center><h2>Fill The form below to login</h2></center>
+					<form id="login-form" onsubmit=" return false">
+				  <div class="form-group">
+				    <label>Email address</label>
+				    <input type="email" class="form-control" id="login-email"  placeholder="Enter email">
+				    <small id="emailHelp" class="red hideme"></small>
+				  </div>
+				  <div class="form-group">
+				    <label >Password</label>
+				    <input type="password" class="form-control" id="loginpwd" placeholder="Password">
+				    <small id="passwordHelp" class="red hideme"></small>
+				  </div>
+				  <button type="submit" class="btn btn-primary" id="btnlogin">Submit</button>
+				</form>
+		</div>
+	</center>
+</div>
+<script type="text/javascript">
+	$('#btnlogin').click(function(event){
+event.preventDefault();
+ var email = $('#login-email').val();
+ var pwd = $('#loginpwd').val();
+if(email == ""){
+	$('#emailHelp').text("Please enter your email or username");
+	$('#emailHelp').show();
+}else{
+	$('#emailHelp').text("");
+	$('#emailHelp').hide();
+}
+
+
+});
+
+</script>
 </body>
 </html>
