@@ -28,7 +28,7 @@ class Record
 
 	///Updating the  record
 	public static function update($attr,$new,$pk){
-		Database::update('RECORDS',$attr,$new,$pk);
+		Database::update('RECORDS',$attr,$new,$pk);//update 
 	}
 
 	//Delete record
