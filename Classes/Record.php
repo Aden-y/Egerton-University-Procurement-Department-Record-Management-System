@@ -37,7 +37,7 @@ class Record
 	}
 }
 
-//$rec = new Record("Book", 25, 256.12);
-//$rec->add();
-//	Record::update('RECORD_QUANTITY',120,1);
+$rec = new Record("Book", 25, 256.12);
+$rec->add();
+	Record::update('RECORD_QUANTITY',120,1);
   ?>

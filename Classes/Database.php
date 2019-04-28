@@ -184,10 +184,10 @@ public static function delete($table, $pk){
 
 //End of Class
 }
- //Database::create_db();
-//Database::createTables();
-//print_r(Database::getAll('USERS'));echo "<br>";
-//print_r(Database::getAll('RECORDS'));echo "<br>";
-//print_r(Database::getAll('ORDERS'));echo "<br>";
+Database::create_db();
+Database::createTables();
+print_r(Database::getAll('USERS'));echo "<br>";
+print_r(Database::getAll('RECORDS'));echo "<br>";
+print_r(Database::getAll('ORDERS'));echo "<br>";
 
  ?>

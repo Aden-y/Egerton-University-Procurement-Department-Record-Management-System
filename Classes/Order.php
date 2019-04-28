@@ -28,7 +28,7 @@ class Order
 		Database::delete('ORDERS',$pk);
 	}
 }
-//$order = new Order('Petrol','Ingineering',20,date("Y/m/d"));
-//$order->add();
+$order = new Order('Petrol','Ingineering',20,date("Y/m/d"));
+$order->add();
 
  ?>

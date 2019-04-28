@@ -70,7 +70,6 @@ private $user_type; //Usertype admin, client or record manager
 		Database::delete('USERS',$pk);
 	}
 }
-
 //$user = new User('Joakim','Adeny','kimmiejoe92@gmail.com','mrkim','kimkim','ADMIN');
 //$user->add();
 //User::login('mrkim','kimkim');
