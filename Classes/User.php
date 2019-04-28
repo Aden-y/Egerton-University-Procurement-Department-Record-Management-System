@@ -60,7 +60,7 @@ private $user_type; //Usertype admin, client or record manager
 		}
 
 	}
-//Update User details
+// Part to Update User details
 		public static function update($attr,$new,$pk){
 		Database::update('USERS',$attr,$new,$pk);
 	}
